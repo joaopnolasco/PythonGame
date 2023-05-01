@@ -7,6 +7,12 @@ screen = pg.display.set_mode((800, 600))
 pg.display.set_caption('Collect Items')
 
 background = pg.image.load('backgroundp1.jpg')
+imgPersonagem = pg.image.load("cestateste.png")
+imgInimigo = pg.image.load("bomba.png")
+imgItem1 = pg.image.load("rocket.png")
+#imgItem2 = pg.image.load("star.png")
+#imgItem3 = pg.image.load("relogiobom.png")
+#imgItem4 = pg.image.load("relógioruim.png")
 
 clock = pg.time.Clock()
 
@@ -22,7 +28,7 @@ class Carro:
         self.cor = cor
 
     def draw(self):
-        pg.draw.rect(self.win, self.cor, (self.x, self.y, self.largura, self.altura))
+        self.win.blit(imgInimigo, (self.x, self.y))
 
     def move(self):
         self.y += self.vel
@@ -42,7 +48,7 @@ class Item:
         self.cor = cor
 
     def draw(self):
-        pg.draw.rect(self.win, self.cor, (self.x, self.y, self.largura, self.altura))
+        self.win.blit(imgItem1, (self.x, self.y))
 
     def move(self):
         self.y += self.vel
@@ -83,7 +89,7 @@ class Player:
             self.y = 600 - self.altura
 
     def draw(self):
-        pg.draw.rect(self.win, self.cor, (self.x, self.y, self.largura, self.altura))
+        self.win.blit(imgPersonagem, (self.x, self.y))
 
     def get_rect(self):
         return pg.Rect(self.x, self.y, self.largura, self.altura)
@@ -105,7 +111,7 @@ def main():
     done = False
 
 
-    player = Player(screen, 385, 580)
+    player = Player(screen, 385, 530)
 
     carros = [
         Carro(screen, 0, 30, 30, 30, 4, 'RED'),
@@ -155,6 +161,7 @@ def main():
         screen.blit(texto_amarelos, (10, 50))
         screen.blit(texto_laranjas, (10, 90))
         screen.blit(texto_rosas, (10, 130))
+
 
         pg.display.update()
         clock.tick(60)
