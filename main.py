@@ -3,7 +3,7 @@ import random
 
 pg.init()
 
-screen = pg.display.set_mode((640, 480))
+screen = pg.display.set_mode((610, 480))
 pg.display.set_caption('Collect Items')
 
 clock = pg.time.Clock()
@@ -50,7 +50,7 @@ class Item:
 
 
 class Player:
-    def init(self, win, x, y):
+    def __init__(self, win, x, y):
         self.win = win
         self.x = x
         self.y = y
@@ -66,10 +66,6 @@ class Player:
             self.x -= self.vel
         if keys[pg.K_d]:
             self.x += self.vel
-        if keys[pg.K_w]:
-            self.y -= self.vel
-        if keys[pg.K_s]:
-            self.y += self.vel
 
         # Verifica se o jogador está dentro dos limites da tela
         if self.x < 0:
@@ -92,6 +88,7 @@ class Player:
             if self.get_rect().colliderect(pg.Rect(item.x, item.y, item.largura, item.altura)):
                 self.score += 1
                 items.remove(item)
+
 
 
 def main():
