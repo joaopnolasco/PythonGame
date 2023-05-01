@@ -6,8 +6,6 @@ pg.init()
 screen = pg.display.set_mode((610, 480))
 pg.display.set_caption('Collect Items')
 
-
-
 clock = pg.time.Clock()
 
 
@@ -61,6 +59,9 @@ class Player:
         self.vel = 5
         self.cor = 'CYAN'
         self.score = 0
+        self.yellow_items = 0
+        self.orange_items = 0
+        self.pink_items = 0
 
     def control(self):
         keys = pg.key.get_pressed()
@@ -88,9 +89,14 @@ class Player:
     def get_item(self, items):
         for item in items:
             if self.get_rect().colliderect(pg.Rect(item.x, item.y, item.largura, item.altura)):
+                if item.cor == 'YELLOW':
+                    self.yellow_items += 1
+                elif item.cor == 'ORANGE':
+                    self.orange_items += 1
+                elif item.cor == 'PINK':
+                    self.pink_items += 1
                 self.score += 1
                 items.remove(item)
-
 
 
 def main():
@@ -135,8 +141,14 @@ def main():
         player.draw()
 
         fonte = pg.font.Font(None, 36)
-        texto = fonte.render(f'Itens: {player.score}', True, (255, 255, 255))
-        screen.blit(texto, (10, 10))
+        texto_itens = fonte.render(f'Itens: {player.score}', True, (255, 255, 255))
+        texto_amarelos = fonte.render(f'Amarelos: {player.yellow_items}', True, (255, 255, 0))
+        texto_laranjas = fonte.render(f'Laranjas: {player.orange_items}', True, (255, 165, 0))
+        texto_rosas = fonte.render(f'Rosas: {player.pink_items}', True, (255, 192, 203))
+        screen.blit(texto_itens, (10, 10))
+        screen.blit(texto_amarelos, (10, 50))
+        screen.blit(texto_laranjas, (10, 90))
+        screen.blit(texto_rosas, (10, 130))
 
         pg.display.update()
         clock.tick(60)
