@@ -3,7 +3,7 @@ import random
 
 pg.init()
 
-screen = pg.display.set_mode((610, 480))
+screen = pg.display.set_mode((800, 600))
 pg.display.set_caption('Collect Items')
 
 clock = pg.time.Clock()
@@ -24,8 +24,8 @@ class Carro:
 
     def move(self):
         self.y += self.vel
-        if self.y > 480:
-            self.x = random.randint(0, 610)
+        if self.y > 600:
+            self.x = random.randint(0, 800)
             self.y = -self.altura
 
 
@@ -44,8 +44,8 @@ class Item:
 
     def move(self):
         self.y += self.vel
-        if self.y > 480:
-            self.x = random.randint(0, 610)
+        if self.y > 600:
+            self.x = random.randint(0, 800)
             self.y = -self.altura
 
 
@@ -73,12 +73,12 @@ class Player:
         # Verifica se o jogador está dentro dos limites da tela
         if self.x < 0:
             self.x = 0
-        elif self.x > 610 - self.largura:
-            self.x = 610 - self.largura
+        elif self.x > 800 - self.largura:
+            self.x = 800 - self.largura
         if self.y < 0:
             self.y = 0
-        elif self.y > 480 - self.altura:
-            self.y = 480 - self.altura
+        elif self.y > 600 - self.altura:
+            self.y = 600 - self.altura
 
     def draw(self):
         pg.draw.rect(self.win, self.cor, (self.x, self.y, self.largura, self.altura))
@@ -111,9 +111,9 @@ def main():
     ]
 
     items = [
-        Item(screen, random.randint(0, 610), -40, 20, 20, 3, 'YELLOW'),
-        Item(screen, random.randint(0, 610), -80, 20, 20, 4, 'ORANGE'),
-        Item(screen, random.randint(0, 610), -120, 20, 20, 5, 'PINK')
+        Item(screen, random.randint(0, 800), -40, 20, 20, 3, 'YELLOW'),
+        Item(screen, random.randint(0, 800), -80, 20, 20, 4, 'ORANGE'),
+        Item(screen, random.randint(0, 800), -120, 20, 20, 5, 'PINK')
     ]
 
     while not done:
