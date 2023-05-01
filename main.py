@@ -6,6 +6,8 @@ pg.init()
 screen = pg.display.set_mode((610, 480))
 pg.display.set_caption('Collect Items')
 
+
+
 clock = pg.time.Clock()
 
 
@@ -131,6 +133,10 @@ def main():
             item.draw()
 
         player.draw()
+
+        fonte = pg.font.Font(None, 36)
+        texto = fonte.render(f'Itens: {player.score}', True, (255, 255, 255))
+        screen.blit(texto, (10, 10))
 
         pg.display.update()
         clock.tick(60)
