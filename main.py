@@ -50,7 +50,7 @@ class Item:
 
 
 class Player:
-    def __init__(self, win, x, y):
+    def init(self, win, x, y):
         self.win = win
         self.x = x
         self.y = y
@@ -70,6 +70,16 @@ class Player:
             self.y -= self.vel
         if keys[pg.K_s]:
             self.y += self.vel
+
+        # Verifica se o jogador está dentro dos limites da tela
+        if self.x < 0:
+            self.x = 0
+        elif self.x > 610 - self.largura:
+            self.x = 610 - self.largura
+        if self.y < 0:
+            self.y = 0
+        elif self.y > 480 - self.altura:
+            self.y = 480 - self.altura
 
     def draw(self):
         pg.draw.rect(self.win, self.cor, (self.x, self.y, self.largura, self.altura))
