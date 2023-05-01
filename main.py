@@ -6,6 +6,8 @@ pg.init()
 screen = pg.display.set_mode((800, 600))
 pg.display.set_caption('Collect Items')
 
+background = pg.image.load('backgroundp1.jpg')
+
 clock = pg.time.Clock()
 
 
@@ -102,7 +104,8 @@ class Player:
 def main():
     done = False
 
-    player = Player(screen, 305, 450)
+
+    player = Player(screen, 385, 580)
 
     carros = [
         Carro(screen, 0, 30, 30, 30, 4, 'RED'),
@@ -117,13 +120,16 @@ def main():
     ]
 
     while not done:
+        screen.fill((40, 40, 40))
+
+        screen.blit(background,(0,0))
+
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 done = True
 
         player.control()
 
-        screen.fill((40, 40, 40))
 
         for carro in carros:
             carro.move()
