@@ -35,7 +35,7 @@ class Item2:
         self.cor = cor
 
     def draw(self):
-        self.win.blit(imgItem, (self.x, self.y))
+        self.win.blit(imgItem2, (self.x, self.y))
 
     def move(self):
         self.y += self.vel
@@ -54,7 +54,7 @@ class Item3:
         self.cor = cor
 
     def draw(self):
-        self.win.blit(imgItem, (self.x, self.y))
+        self.win.blit(imgItem3, (self.x, self.y))
 
     def move(self):
         self.y += self.vel
