@@ -70,9 +70,9 @@ def main():
 
         fonte = pg.font.Font(None, 36)
         texto_itens = fonte.render(f'Itens: {player.score}', True, (255, 255, 255))
-        texto_amarelos = fonte.render(f'Amarelos: {player.yellow_items}', True, (255, 255, 0))
-        texto_laranjas = fonte.render(f'Laranjas: {player.orange_items}', True, (255, 165, 0))
-        texto_rosas = fonte.render(f'Rosas: {player.pink_items}', True, (255, 192, 203))
+        texto_amarelos = fonte.render(f'Foguete: {player.yellow_items}', True, (255, 255, 0))
+        texto_laranjas = fonte.render(f'Moeda: {player.orange_items}', True, (255, 165, 0))
+        texto_rosas = fonte.render(f'Relogio: {player.pink_items}', True, (255, 192, 203))
         screen.blit(texto_itens, (10, 10))
         screen.blit(texto_amarelos, (10, 50))
         screen.blit(texto_laranjas, (10, 90))
