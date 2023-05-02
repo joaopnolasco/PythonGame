@@ -50,7 +50,7 @@ class Item:
 
     def draw(self):
         self.win.blit(imgItem1, (self.x, self.y))
-        self.win.blit(imgItem2, (self.x, self.y))
+        
 
     def move(self):
         self.y += self.vel
