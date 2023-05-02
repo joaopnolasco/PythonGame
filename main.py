@@ -46,6 +46,7 @@ class Item:
         self.altura = altura
         self.vel = vel
         self.cor = cor
+        self.collected = False
 
     def draw(self):
         self.win.blit(imgItem1, (self.x, self.y))
@@ -55,6 +56,7 @@ class Item:
         if self.y > 600:
             self.x = random.randint(0, 800)
             self.y = -self.altura
+            self.collected = False
 
 
 class Player:
@@ -96,7 +98,8 @@ class Player:
 
     def get_item(self, items):
         for item in items:
-            if self.get_rect().colliderect(pg.Rect(item.x, item.y, item.largura, item.altura)):
+            if not item.collected and self.get_rect().colliderect(pg.Rect(item.x, item.y, item.largura, item.altura)):
+                item.collected = True
                 if item.cor == 'YELLOW':
                     self.yellow_items += 1
                 elif item.cor == 'ORANGE':
@@ -104,12 +107,12 @@ class Player:
                 elif item.cor == 'PINK':
                     self.pink_items += 1
                 self.score += 1
-                items.remove(item)
+
+
 
 
 def main():
     done = False
-
 
     player = Player(screen, 385, 530)
 
@@ -122,20 +125,21 @@ def main():
     items = [
         Item(screen, random.randint(0, 800), -40, 20, 20, 3, 'YELLOW'),
         Item(screen, random.randint(0, 800), -80, 20, 20, 4, 'ORANGE'),
-        Item(screen, random.randint(0, 800), -120, 20, 20, 5, 'PINK')
+        Item(screen, random.randint(0, 800), -120, 20, 20, 5, 'PINK'),
+
     ]
 
     while not done:
         screen.fill((40, 40, 40))
-
-        screen.blit(background,(0,0))
+        screen.blit(background, (0, 0))
 
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 done = True
 
-        player.control()
 
+
+        player.control()
 
         for carro in carros:
             carro.move()
@@ -161,7 +165,6 @@ def main():
         screen.blit(texto_amarelos, (10, 50))
         screen.blit(texto_laranjas, (10, 90))
         screen.blit(texto_rosas, (10, 130))
-
 
         pg.display.update()
         clock.tick(60)
