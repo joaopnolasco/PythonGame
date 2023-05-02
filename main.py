@@ -1,5 +1,9 @@
 import pygame as pg
 import random
+from carro import Carro
+from trofeu import Trofeu
+from item import Item, Item2, Item3
+from player import Player
 
 pg.init()
 
@@ -8,171 +12,8 @@ pg.display.set_caption('Collect Items')
 
 background = pg.image.load('backgroundp1.jpg')
 imgPersonagem = pg.image.load("cestateste.png")
-imgInimigo = pg.image.load("bomba.png")
-imgItem1 = pg.image.load("rocket.png")
-imgItem2 = pg.image.load("star.png")
-imgItem3 = pg.image.load("relogiobom.png")
-# imgItem4 = pg.image.load("relógioruim.png")
-imgTrofeu = pg.image.load("trophy.png")
 
 clock = pg.time.Clock()
-
-
-class Carro:
-    def __init__(self, win, x, y, largura, altura, vel, cor):
-        self.win = win
-        self.x = x
-        self.y = y
-        self.largura = largura
-        self.altura = altura
-        self.vel = vel
-        self.cor = cor
-
-    def draw(self):
-        self.win.blit(imgInimigo, (self.x, self.y))
-
-    def move(self):
-        self.y += self.vel
-        if self.y > 600:
-            self.x = random.randint(0, 800)
-            self.y = -self.altura
-
-
-class Trofeu:
-    def __init__(self, win, x, y, largura, altura, vel, cor):
-        self.win = win
-        self.x = x
-        self.y = y
-        self.largura = largura
-        self.altura = altura
-        self.vel = vel
-        self.cor = cor
-
-    def draw(self):
-        self.win.blit(imgTrofeu, (self.x, self.y))
-
-    def move(self):
-        self.y += self.vel
-        if self.y > 600:
-            self.x = random.randint(0, 800)
-            self.y = -self.altura
-
-
-class Item:
-    def __init__(self, win, x, y, largura, altura, vel, cor):
-        self.win = win
-        self.x = x
-        self.y = y
-        self.largura = largura
-        self.altura = altura
-        self.vel = vel
-        self.cor = cor
-        self.collected = False
-
-    def draw(self):
-        self.win.blit(imgItem1, (self.x, self.y))
-
-    def move(self):
-        self.y += self.vel
-        if self.y > 600:
-            self.x = random.randint(0, 800)
-            self.y = -self.altura
-            self.collected = False
-
-
-class Item2:
-    def __init__(self, win, x, y, largura, altura, vel, cor):
-        self.win = win
-        self.x = x
-        self.y = y
-        self.largura = largura
-        self.altura = altura
-        self.vel = vel
-        self.cor = cor
-        self.collected = False
-
-    def draw(self):
-        self.win.blit(imgItem2, (self.x, self.y))
-
-    def move(self):
-        self.y += self.vel
-        if self.y > 600:
-            self.x = random.randint(0, 800)
-            self.y = -self.altura
-            self.collected = False
-
-
-class Item3:
-    def __init__(self, win, x, y, largura, altura, vel, cor):
-        self.win = win
-        self.x = x
-        self.y = y
-        self.largura = largura
-        self.altura = altura
-        self.vel = vel
-        self.cor = cor
-        self.collected = False
-
-    def draw(self):
-        self.win.blit(imgItem3, (self.x, self.y))
-
-    def move(self):
-        self.y += self.vel
-        if self.y > 600:
-            self.x = random.randint(0, 800)
-            self.y = -self.altura
-            self.collected = False
-
-
-class Player:
-    def __init__(self, win, x, y):
-        self.win = win
-        self.x = x
-        self.y = y
-        self.largura = 30
-        self.altura = 20
-        self.vel = 5
-        self.cor = 'CYAN'
-        self.score = 0
-        self.yellow_items = 0
-        self.orange_items = 0
-        self.pink_items = 0
-
-    def control(self):
-        keys = pg.key.get_pressed()
-        if keys[pg.K_a]:
-            self.x -= self.vel
-        if keys[pg.K_d]:
-            self.x += self.vel
-
-        # Verifica se o jogador está dentro dos limites da tela
-        if self.x < 0:
-            self.x = 0
-        elif self.x > 800 - self.largura:
-            self.x = 800 - self.largura
-        if self.y < 0:
-            self.y = 0
-        elif self.y > 600 - self.altura:
-            self.y = 600 - self.altura
-
-    def draw(self):
-        self.win.blit(imgPersonagem, (self.x, self.y))
-
-    def get_rect(self):
-        return pg.Rect(self.x, self.y, self.largura, self.altura)
-
-    def get_item(self, items):
-        for item in items:
-            if not item.collected and self.get_rect().colliderect(pg.Rect(item.x, item.y, item.largura, item.altura)):
-                item.collected = True
-                if item.cor == 'YELLOW':
-                    self.yellow_items += 1
-                elif item.cor == 'ORANGE':
-                    self.orange_items += 1
-                elif item.cor == 'PINK':
-                    self.pink_items += 1
-                self.score += 1
-
 
 def main():
     done = False
@@ -212,15 +53,9 @@ def main():
             carro.move()
             carro.draw()
 
-            if player.get_rect().colliderect(pg.Rect(carro.x, carro.y, carro.largura, carro.altura)):
-                done = True
-
         for trofeu in trofeus :
             trofeu.move()
             trofeu.draw()
-
-            if player.get_rect().colliderect(pg.Rect(trofeu.x, trofeu.y, trofeu.largura, trofeu.altura)):
-                done = False
 
         player.get_item(items)
 
@@ -229,6 +64,9 @@ def main():
             item.draw()
 
         player.draw()
+
+        if player.collide(carros):
+            done = True
 
         fonte = pg.font.Font(None, 36)
         texto_itens = fonte.render(f'Itens: {player.score}', True, (255, 255, 255))
@@ -244,7 +82,6 @@ def main():
         clock.tick(60)
 
     pg.quit()
-
 
 if __name__ == '__main__':
     main()
