@@ -1,9 +1,3 @@
-import pygame as pg
-import random
-
-imgPersonagem = pg.image.load("cestateste.png")
-
-class Player:
     def __init__(self, win, x, y):
         self.win = win
         self.x = x
@@ -23,10 +17,6 @@ class Player:
             self.x -= 5
         if keys[pg.K_RIGHT] and self.x < 760:
             self.x += 5
-        if keys[pg.K_UP] and self.y > 0:
-            self.y -= 5
-        if keys[pg.K_DOWN] and self.y < 560:
-            self.y += 5
 
     def get_item(self, items):
         for item in items:
