@@ -1,3 +1,9 @@
+import pygame as pg
+import random
+
+imgPersonagem = pg.image.load("cestateste.png")
+
+class Player:
     def __init__(self, win, x, y):
         self.win = win
         self.x = x
