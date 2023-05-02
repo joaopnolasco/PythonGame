@@ -12,7 +12,8 @@ imgInimigo = pg.image.load("bomba.png")
 imgItem1 = pg.image.load("rocket.png")
 imgItem2 = pg.image.load("star.png")
 imgItem3 = pg.image.load("relogiobom.png")
-#imgItem4 = pg.image.load("relógioruim.png")
+# imgItem4 = pg.image.load("relógioruim.png")
+imgTrofeu = pg.image.load("trophy.png")
 
 clock = pg.time.Clock()
 
@@ -37,6 +38,26 @@ class Carro:
             self.y = -self.altura
 
 
+class Trofeu:
+    def __init__(self, win, x, y, largura, altura, vel, cor):
+        self.win = win
+        self.x = x
+        self.y = y
+        self.largura = largura
+        self.altura = altura
+        self.vel = vel
+        self.cor = cor
+
+    def draw(self):
+        self.win.blit(imgTrofeu, (self.x, self.y))
+
+    def move(self):
+        self.y += self.vel
+        if self.y > 600:
+            self.x = random.randint(0, 800)
+            self.y = -self.altura
+
+
 class Item:
     def __init__(self, win, x, y, largura, altura, vel, cor):
         self.win = win
@@ -50,7 +71,6 @@ class Item:
 
     def draw(self):
         self.win.blit(imgItem1, (self.x, self.y))
-        
 
     def move(self):
         self.y += self.vel
@@ -58,6 +78,7 @@ class Item:
             self.x = random.randint(0, 800)
             self.y = -self.altura
             self.collected = False
+
 
 class Item2:
     def __init__(self, win, x, y, largura, altura, vel, cor):
@@ -71,7 +92,7 @@ class Item2:
         self.collected = False
 
     def draw(self):
-         self.win.blit(imgItem2, (self.x, self.y))
+        self.win.blit(imgItem2, (self.x, self.y))
 
     def move(self):
         self.y += self.vel
@@ -79,6 +100,7 @@ class Item2:
             self.x = random.randint(0, 800)
             self.y = -self.altura
             self.collected = False
+
 
 class Item3:
     def __init__(self, win, x, y, largura, altura, vel, cor):
@@ -92,7 +114,7 @@ class Item3:
         self.collected = False
 
     def draw(self):
-         self.win.blit(imgItem3, (self.x, self.y))
+        self.win.blit(imgItem3, (self.x, self.y))
 
     def move(self):
         self.y += self.vel
@@ -152,8 +174,6 @@ class Player:
                 self.score += 1
 
 
-
-
 def main():
     done = False
 
@@ -163,6 +183,12 @@ def main():
         Carro(screen, 0, 30, 30, 30, 4, 'RED'),
         Carro(screen, 200, 0, 30, 30, 2, 'GREEN'),
         Carro(screen, 400, 60, 30, 30, 3, 'BLUE')
+    ]
+
+    trofeus = [
+        Trofeu(screen, 20, 15, 5, 15, 5, 'RED'),
+        Trofeu(screen, 150, 5, 20, 15, 1, 'GREEN'),
+        Trofeu(screen, 500, 80, 60, 15, 2, 'BLUE')
     ]
 
     items = [
@@ -180,8 +206,6 @@ def main():
             if event.type == pg.QUIT:
                 done = True
 
-
-
         player.control()
 
         for carro in carros:
@@ -190,6 +214,13 @@ def main():
 
             if player.get_rect().colliderect(pg.Rect(carro.x, carro.y, carro.largura, carro.altura)):
                 done = True
+
+        for trofeu in trofeus :
+            trofeu.move()
+            trofeu.draw()
+
+            if player.get_rect().colliderect(pg.Rect(trofeu.x, trofeu.y, trofeu.largura, trofeu.altura)):
+                done = False
 
         player.get_item(items)
 
