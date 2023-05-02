@@ -10,8 +10,8 @@ background = pg.image.load('backgroundp1.jpg')
 imgPersonagem = pg.image.load("cestateste.png")
 imgInimigo = pg.image.load("bomba.png")
 imgItem1 = pg.image.load("rocket.png")
-#imgItem2 = pg.image.load("star.png")
-#imgItem3 = pg.image.load("relogiobom.png")
+imgItem2 = pg.image.load("star.png")
+imgItem3 = pg.image.load("relogiobom.png")
 #imgItem4 = pg.image.load("relógioruim.png")
 
 clock = pg.time.Clock()
@@ -50,6 +50,49 @@ class Item:
 
     def draw(self):
         self.win.blit(imgItem1, (self.x, self.y))
+        self.win.blit(imgItem2, (self.x, self.y))
+
+    def move(self):
+        self.y += self.vel
+        if self.y > 600:
+            self.x = random.randint(0, 800)
+            self.y = -self.altura
+            self.collected = False
+
+class Item2:
+    def __init__(self, win, x, y, largura, altura, vel, cor):
+        self.win = win
+        self.x = x
+        self.y = y
+        self.largura = largura
+        self.altura = altura
+        self.vel = vel
+        self.cor = cor
+        self.collected = False
+
+    def draw(self):
+         self.win.blit(imgItem2, (self.x, self.y))
+
+    def move(self):
+        self.y += self.vel
+        if self.y > 600:
+            self.x = random.randint(0, 800)
+            self.y = -self.altura
+            self.collected = False
+
+class Item3:
+    def __init__(self, win, x, y, largura, altura, vel, cor):
+        self.win = win
+        self.x = x
+        self.y = y
+        self.largura = largura
+        self.altura = altura
+        self.vel = vel
+        self.cor = cor
+        self.collected = False
+
+    def draw(self):
+         self.win.blit(imgItem3, (self.x, self.y))
 
     def move(self):
         self.y += self.vel
@@ -124,8 +167,8 @@ def main():
 
     items = [
         Item(screen, random.randint(0, 800), -40, 20, 20, 3, 'YELLOW'),
-        Item(screen, random.randint(0, 800), -80, 20, 20, 4, 'ORANGE'),
-        Item(screen, random.randint(0, 800), -120, 20, 20, 5, 'PINK'),
+        Item2(screen, random.randint(0, 800), -80, 20, 20, 4, 'ORANGE'),
+        Item3(screen, random.randint(0, 800), -120, 20, 20, 5, 'PINK'),
 
     ]
 
