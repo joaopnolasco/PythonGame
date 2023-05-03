@@ -12,6 +12,7 @@ class Trofeu:
         self.altura = altura
         self.vel = vel
         self.cor = cor
+        self.pontuacao = 0
 
     def draw(self):
         self.win.blit(imgTrofeu, (self.x, self.y))
