@@ -27,9 +27,9 @@ def main():
     ]
 
     trofeus = [
-        Trofeu(screen, 20, 15, 5, 15, 5, 'RED'),
-        Trofeu(screen, 150, 5, 20, 15, 1, 'GREEN'),
-        Trofeu(screen, 500, 80, 60, 15, 2, 'BLUE')
+        Trofeu(screen, 20, 15, 5, 15, 5, 'BROWN'),
+        Trofeu(screen, 150, 5, 20, 15, 1, 'BLACK'),
+        Trofeu(screen, 500, 80, 60, 15, 2, 'PURPLE')
     ]
 
     items = [
@@ -58,6 +58,7 @@ def main():
             trofeu.draw()
 
         player.get_item(items)
+        player.get_trofeu(trofeus)
 
         for item in items:
             item.move()
@@ -73,10 +74,12 @@ def main():
         texto_amarelos = fonte.render(f'Foquete: {player.yellow_items}', True, (255, 255, 0))
         texto_laranjas = fonte.render(f'Moeda: {player.orange_items}', True, (255, 165, 0))
         texto_rosas = fonte.render(f'Velocidade: {player.pink_items}', True, (255, 192, 203))
+        texto_pontuacao = fonte.render(f'Pontuação: {player.trofeu_items}', True, (255, 0, 0))
         screen.blit(texto_itens, (10, 10))
         screen.blit(texto_amarelos, (10, 50))
         screen.blit(texto_laranjas, (10, 90))
         screen.blit(texto_rosas, (10, 130))
+        screen.blit(texto_pontuacao, (10, 170))
 
         pg.display.update()
         clock.tick(60)
