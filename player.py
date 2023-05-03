@@ -13,6 +13,11 @@ class Player:
         self.yellow_items = 0
         self.orange_items = 0
         self.pink_items = 0
+        self.trofeu_items = 0
+        self.brown_items = 0
+        self.black_items = 0
+        self.purple_items = 0
+
 
     def draw(self):
         self.win.blit(imgPersonagem, (self.x, self.y))
@@ -44,3 +49,12 @@ class Player:
                 if self.y < carro.y + carro.altura and self.y + 60 > carro.y:
                     return True
         return False
+
+    def get_trofeu(self, trofeus):
+        for trofeu in trofeus:
+            if self.x + self.vel < trofeu.x + trofeu.largura and self.x + self.vel + 30 > trofeu.x:
+                if self.y < trofeu.y + trofeu.altura and self.y + 60 > trofeu.y:
+                    self.trofeu_items += 1
+                    self.score += trofeu.pontuacao
+                    trofeu.x = random.randint(0, 800)
+                    trofeu.y = -trofeu.altura
