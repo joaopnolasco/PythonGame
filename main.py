@@ -17,13 +17,15 @@ clock = pg.time.Clock()
 
 def main():
     done = False
+    time_remaining = 300
 
     player = Player(screen, 385, 530)
 
     carros = [
-        Carro(screen, 0, 30, 30, 30, 4, 'RED'),
-        Carro(screen, 200, 0, 30, 30, 2, 'GREEN'),
-        Carro(screen, 400, 60, 30, 30, 3, 'BLUE')
+        Carro(screen, 0, 30, 30, 30, 8, 'RED'),
+        Carro(screen, 200, 0, 30, 30, 10, 'GREEN'),
+        Carro(screen, 400, 60, 30, 30, 12, 'BLUE'),
+        Carro(screen, 600, 20, 30, 30, 12, 'BLACK')
     ]
 
     trofeus = [
@@ -40,6 +42,8 @@ def main():
     ]
 
     while not done:
+
+
         screen.fill((40, 40, 40))
         screen.blit(background, (0, 0))
 
@@ -80,6 +84,15 @@ def main():
         screen.blit(texto_laranjas, (10, 90))
         screen.blit(texto_rosas, (10, 130))
         screen.blit(texto_pontuacao, (10, 170))
+
+        time_remaining -= 1 / 60  # diminui 1 segundo a cada loop
+        if time_remaining <= 0:
+            done = True  # tempo acabou, o jogo termina
+
+        # exibir o tempo restante na tela
+        fonte_timer = pg.font.Font(None, 40)
+        texto_timer = fonte_timer.render(f'Tempo: {int(time_remaining)}s', True, (255, 255, 255))
+        screen.blit(texto_timer, (600, 10))  # posiciona o timer na tela
 
         pg.display.update()
         clock.tick(60)
