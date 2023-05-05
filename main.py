@@ -1,6 +1,6 @@
 import pygame as pg
 import random
-from carro import Carro
+from rival import Rival
 from trofeu import Trofeu
 from item import Item, Item2, Item3
 from player import Player
@@ -21,11 +21,11 @@ def main():
 
     player = Player(screen, 385, 530)
 
-    carros = [
-        Carro(screen, 0, 30, 30, 30, 8, 'RED'),
-        Carro(screen, 200, 0, 30, 30, 10, 'GREEN'),
-        Carro(screen, 400, 60, 30, 30, 12, 'BLUE'),
-        Carro(screen, 600, 20, 30, 30, 12, 'BLACK')
+    rivais = [
+        Rival(screen, 0, 30, 30, 30, 8, 'RED'),
+        Rival(screen, 200, 0, 30, 30, 10, 'GREEN'),
+        Rival(screen, 400, 60, 30, 30, 12, 'BLUE'),
+        Rival(screen, 600, 20, 30, 30, 12, 'BLACK')
     ]
 
     trofeus = [
@@ -53,9 +53,9 @@ def main():
 
         player.control()
 
-        for carro in carros:
-            carro.move()
-            carro.draw()
+        for rival in rivais:
+            rival.move()
+            rival.draw()
 
         for trofeu in trofeus :
             trofeu.move()
@@ -70,14 +70,14 @@ def main():
 
         player.draw()
 
-        if player.collide(carros):
+        if player.collide(rivais):
             done = True
 
         fonte = pg.font.Font(None, 36)
         texto_itens = fonte.render(f'Itens: {player.score}', True, (255, 255, 255))
-        texto_amarelos = fonte.render(f'Foquete: {player.yellow_items}', True, (255, 255, 0))
+        texto_amarelos = fonte.render(f'Velocidade: {player.yellow_items}', True, (255, 255, 0))
         texto_laranjas = fonte.render(f'Moeda: {player.orange_items}', True, (255, 165, 0))
-        texto_rosas = fonte.render(f'Velocidade: {player.pink_items}', True, (255, 192, 203))
+        texto_rosas = fonte.render(f'Timer: {player.pink_items}', True, (255, 192, 203))
         texto_pontuacao = fonte.render(f'Pontuação: {player.trofeu_items}', True, (255, 0, 0))
         screen.blit(texto_itens, (10, 10))
         screen.blit(texto_amarelos, (10, 50))
