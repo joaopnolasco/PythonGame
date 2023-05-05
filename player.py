@@ -17,6 +17,9 @@ class Player:
         self.brown_items = 0
         self.black_items = 0
         self.purple_items = 0
+        self.vel_normal = 5
+        self.vel_foguete = 10
+        self.current_vel = self.vel_normal
 
 
     def draw(self):
@@ -25,21 +28,23 @@ class Player:
     def control(self):
         keys = pg.key.get_pressed()
         if keys[pg.K_LEFT] and self.x > 0:
-            self.x -= 5
+            self.x -= self.current_vel
         if keys[pg.K_RIGHT] and self.x < 760:
-            self.x += 5
+            self.x += self.current_vel
 
     def get_item(self, items):
         for item in items:
-            if self.x + self.vel < item.x + item.largura and self.x + self.vel + 30 > item.x:
+            if self.x + self.current_vel < item.x + item.largura and self.x + self.current_vel + 30 > item.x:
                 if self.y < item.y + item.altura and self.y + 60 > item.y:
                     if item.cor == 'YELLOW':
                         self.yellow_items += 1
+                        self.current_vel = self.vel_foguete
                     elif item.cor == 'ORANGE':
                         self.orange_items += 1
                     elif item.cor == 'PINK':
                         self.pink_items += 1
                     self.score += 1
+
                     item.x = random.randint(0, 800)
                     item.y = -item.altura
 
