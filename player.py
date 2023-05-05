@@ -43,10 +43,10 @@ class Player:
                     item.x = random.randint(0, 800)
                     item.y = -item.altura
 
-    def collide(self, carros):
-        for carro in carros:
-            if self.x + self.vel < carro.x + carro.largura and self.x + self.vel + 30 > carro.x:
-                if self.y < carro.y + carro.altura and self.y + 60 > carro.y:
+    def collide(self, rivais):
+        for rival in rivais:
+            if self.x + self.vel < rival.x + rival.largura and self.x + self.vel + 30 > rival.x:
+                if self.y < rival.y + rival.altura and self.y + 60 > rival.y:
                     return True
         return False
 
