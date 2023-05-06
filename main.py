@@ -22,16 +22,16 @@ def main():
     player = Player(screen, 385, 530)
 
     rivais = [
-        Rival(screen, 0, 30, 30, 30, 8, 'RED'),
-        Rival(screen, 200, 0, 30, 30, 10, 'GREEN'),
-        Rival(screen, 400, 60, 30, 30, 12, 'BLUE'),
-        Rival(screen, 600, 20, 30, 30, 12, 'BLACK')
+        Rival(screen, 0, 30, 30, 30, 8),
+        Rival(screen, 200, 0, 30, 30, 10),
+        Rival(screen, 400, 60, 30, 30, 12),
+        Rival(screen, 600, 20, 30, 30, 12)
     ]
 
     trofeus = [
-        Trofeu(screen, 20, 15, 5, 15, 5, 'BROWN'),
-        Trofeu(screen, 150, 5, 20, 15, 1, 'BLACK'),
-        Trofeu(screen, 500, 80, 60, 15, 2, 'PURPLE')
+        Trofeu(screen, 20, 15, 5, 15, 5),
+        Trofeu(screen, 150, 5, 20, 15, 1),
+        Trofeu(screen, 500, 80, 60, 15, 2)
     ]
 
     items = [
