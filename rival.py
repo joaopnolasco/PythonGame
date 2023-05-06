@@ -1,7 +1,7 @@
 import pygame as pg
 import random
 
-imgInimigo = pg.image.load("bomba.png")
+imgInimigo = pg.image.load("cobra.png")
 
 class Rival:
     def __init__(self, win, x, y, largura, altura, vel):
