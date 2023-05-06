@@ -8,7 +8,7 @@ from player import Player
 pg.init()
 
 screen = pg.display.set_mode((800, 600))
-pg.display.set_caption('TROPHY COLLECT : Sport Club Edition')
+pg.display.set_caption('TROPHY COLLECT : Sport Clube Edition')
 
 background = pg.image.load('ilhaTela.jpg')
 
@@ -25,7 +25,8 @@ def main():
         Rival(screen, 0, 30, 30, 30, 8),
         Rival(screen, 200, 0, 30, 30, 10),
         Rival(screen, 400, 60, 30, 30, 12),
-        Rival(screen, 600, 20, 30, 30, 12)
+        Rival(screen, 600, 20, 30, 30, 12),
+        Rival(screen, 500, 10, 30, 30, 5)
     ]
 
     trofeus = [
@@ -74,14 +75,14 @@ def main():
             done = True
 
         fonte = pg.font.Font(None, 36)
-        texto_amarelos = fonte.render(f'Velocidade: {player.yellow_items}', True, (255, 255, 0))
+        texto_amarelos = fonte.render(f'Foguete: {player.yellow_items}', True, (255, 255, 0))
         texto_laranjas = fonte.render(f'Moeda: {player.orange_items}', True, (255, 0, 0))
-        texto_rosas = fonte.render(f'Timer: {player.pink_items}', True, (0, 0, 0))
+        texto_rosas = fonte.render(f'Tartaruga: {player.pink_items}', True, (0, 0, 0))
         texto_pontuacao = fonte.render(f'Pontuação: {player.trofeu_items}', True, (255, 255, 0))
-        screen.blit(texto_amarelos, (10, 50))
-        screen.blit(texto_laranjas, (10, 90))
-        screen.blit(texto_rosas, (10, 130))
-        screen.blit(texto_pontuacao, (10, 170))
+        screen.blit(texto_amarelos, (10, 10))
+        screen.blit(texto_laranjas, (10, 50))
+        screen.blit(texto_rosas, (10, 100))
+        screen.blit(texto_pontuacao, (10, 150))
 
         time_remaining -= 1 / 60  # diminui 1 segundo a cada loop
         if time_remaining <= 0:
