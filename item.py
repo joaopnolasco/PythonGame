@@ -3,7 +3,8 @@ import random
 
 imgItem = pg.image.load("rocket.png")
 imgItem2 = pg.image.load("star.png")
-imgItem3 = pg.image.load("relogiobom.png")
+imgItem3 = pg.image.load("tartaruga.png")
+
 
 class Item:
     def __init__(self, win, x, y, largura, altura, vel, cor):
