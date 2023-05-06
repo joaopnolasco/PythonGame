@@ -39,7 +39,7 @@ class Player:
 
                     elif item.cor == 'ORANGE':
                         self.orange_items += 1
-                        if self.orange_items % 2 == 0:
+                        if self.orange_items % 10 == 0:
                             self.trofeu_items += 5
                     elif item.cor == 'PINK':
                         self.pink_items += 1
