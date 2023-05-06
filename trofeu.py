@@ -4,14 +4,13 @@ import random
 imgTrofeu = pg.image.load("trophy.png")
 
 class Trofeu:
-    def __init__(self, win, x, y, largura, altura, vel, cor):
+    def __init__(self, win, x, y, largura, altura, vel):
         self.win = win
         self.x = x
         self.y = y
         self.largura = largura
         self.altura = altura
         self.vel = vel
-        self.cor = cor
         self.pontuacao = 0
 
     def draw(self):
