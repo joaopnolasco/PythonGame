@@ -4,14 +4,13 @@ import random
 imgInimigo = pg.image.load("bomba.png")
 
 class Rival:
-    def __init__(self, win, x, y, largura, altura, vel, cor):
+    def __init__(self, win, x, y, largura, altura, vel):
         self.win = win
         self.x = x
         self.y = y
         self.largura = largura
         self.altura = altura
         self.vel = vel
-        self.cor = cor
 
     def draw(self):
         self.win.blit(imgInimigo, (self.x, self.y))
