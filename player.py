@@ -16,6 +16,7 @@ class Player:
         self.trofeu_items = 0
         self.vel_normal = 5
         self.vel_foguete = 10
+        self.vel_tartaruga=3
         self.current_vel = self.vel_normal
 
 
@@ -43,6 +44,8 @@ class Player:
                             self.trofeu_items += 5
                     elif item.cor == 'PINK':
                         self.pink_items += 1
+                        self.current_vel = self.vel_tartaruga
+
                     self.score += 1
 
 
