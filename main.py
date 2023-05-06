@@ -8,7 +8,7 @@ from player import Player
 pg.init()
 
 screen = pg.display.set_mode((800, 600))
-pg.display.set_caption('Jogo de coletar ')
+pg.display.set_caption('TROPHY COLLECT : Sport Clube Edition')
 
 background = pg.image.load('ilhaTela.jpg')
 
