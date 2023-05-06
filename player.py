@@ -14,9 +14,6 @@ class Player:
         self.orange_items = 0
         self.pink_items = 0
         self.trofeu_items = 0
-        self.brown_items = 0
-        self.black_items = 0
-        self.purple_items = 0
         self.vel_normal = 5
         self.vel_foguete = 10
         self.current_vel = self.vel_normal
