@@ -10,7 +10,7 @@ pg.init()
 screen = pg.display.set_mode((800, 600))
 pg.display.set_caption('Jogo de coletar ')
 
-background = pg.image.load('fundoTela.jpg')
+background = pg.image.load('ilhaTela.jpg')
 
 
 clock = pg.time.Clock()
@@ -74,12 +74,10 @@ def main():
             done = True
 
         fonte = pg.font.Font(None, 36)
-        texto_itens = fonte.render(f'Itens: {player.score}', True, (255, 255, 255))
         texto_amarelos = fonte.render(f'Velocidade: {player.yellow_items}', True, (255, 255, 0))
-        texto_laranjas = fonte.render(f'Moeda: {player.orange_items}', True, (255, 165, 0))
-        texto_rosas = fonte.render(f'Timer: {player.pink_items}', True, (255, 192, 203))
-        texto_pontuacao = fonte.render(f'Pontuação: {player.trofeu_items}', True, (255, 0, 0))
-        screen.blit(texto_itens, (10, 10))
+        texto_laranjas = fonte.render(f'Moeda: {player.orange_items}', True, (255, 0, 0))
+        texto_rosas = fonte.render(f'Timer: {player.pink_items}', True, (0, 0, 0))
+        texto_pontuacao = fonte.render(f'Pontuação: {player.trofeu_items}', True, (255, 255, 0))
         screen.blit(texto_amarelos, (10, 50))
         screen.blit(texto_laranjas, (10, 90))
         screen.blit(texto_rosas, (10, 130))
@@ -91,7 +89,7 @@ def main():
 
         # exibir o tempo restante na tela
         fonte_timer = pg.font.Font(None, 40)
-        texto_timer = fonte_timer.render(f'Tempo: {int(time_remaining)}s', True, (255, 255, 255))
+        texto_timer = fonte_timer.render(f'Tempo: {int(time_remaining)}s', True, (0, 0, 0))
         screen.blit(texto_timer, (600, 10))  # posiciona o timer na tela
 
         pg.display.update()
