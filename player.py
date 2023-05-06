@@ -36,11 +36,17 @@ class Player:
                     if item.cor == 'YELLOW':
                         self.yellow_items += 1
                         self.current_vel = self.vel_foguete
+
                     elif item.cor == 'ORANGE':
                         self.orange_items += 1
+                        if self.orange_items % 2 == 0:
+                            self.trofeu_items += 5
                     elif item.cor == 'PINK':
                         self.pink_items += 1
                     self.score += 1
+
+
+
 
                     item.x = random.randint(0, 800)
                     item.y = -item.altura
