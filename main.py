@@ -16,7 +16,7 @@ screen = pygame.display.set_mode((width, height))
 pygame.display.set_caption("Trophy Collect: Sport Club edition")
 
 # Set the background image
-background_image = pygame.image.load("IlhaTela.jpg").convert()
+background_image = pygame.image.load("sportbackground.jpeg").convert()
 
 # Set up the fonts
 title_font = pygame.font.SysFont("Times New Roman", 60)
@@ -47,7 +47,7 @@ while running:
                 pg.init()
 
                 screen = pg.display.set_mode((800, 600))
-                pg.display.set_caption('NOME DO JOGO')
+                pg.display.set_caption('TROPHY COLLECT: Sport Club Edition')
 
                 background = pg.image.load('ilhaTela.jpg')
 
@@ -136,7 +136,7 @@ while running:
                     pg.quit()
 
 
-                if _name_ == '_main_':
+                if main() == '_main_':
                     main()
             if quit_button.collidepoint(mouse_pos):
                 running = False
@@ -145,7 +145,7 @@ while running:
     screen.blit(background_image, [0, 0])
 
     # Draw the title
-    title_text = title_font.render("TROPHY COLLECT", True, BLACK)
+    title_text = title_font.render("TROPHY COLLECT", True, WHITE)
     title_rect = title_text.get_rect()
     title_rect.center = (width // 2, 100)
     screen.blit(title_text, title_rect)
