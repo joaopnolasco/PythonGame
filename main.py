@@ -34,6 +34,10 @@ start_button = pygame.Rect(250, 300, 300, 80)
 # Create the "Quit Game" button
 quit_button = pygame.Rect(250, 400, 300, 80)
 
+pygame.mixer.init()
+pygame.mixer.music.set_volume(0.1)
+pygame.mixer.music.load('Warriyo - Mortals (feat. Laura Brehm) [NCS Release].mp3')
+pygame.mixer.music.play(-1)
 # Set up the game loop
 running = True
 while running:
@@ -53,6 +57,9 @@ while running:
 
                 clock = pg.time.Clock()
 
+                # Início da adição da música
+
+                # Fim da adição da música
 
                 def main():
                     done = False
