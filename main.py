@@ -116,7 +116,7 @@ while running:
                         player.draw()
 
                         if player.collide(rivais):
-                            done = True
+                            game_over(player.trofeu_items)
 
                         fonte = pg.font.Font(None, 36)
                         texto_amarelos = fonte.render(f'Foguetes: {player.yellow_items}', True, (255, 255, 0))
@@ -147,6 +147,43 @@ while running:
                     main()
             if quit_button.collidepoint(mouse_pos):
                 running = False
+
+
+        def game_over(pontuacao):
+            pg.init()
+            screen = pg.display.set_mode((800, 600))
+            pg.display.set_caption('TROPHY COLLECT: Sport Club Edition')
+
+            background = pg.image.load('sport derrota.webp')
+
+            fonte_titulo = pg.font.Font(None, 50)
+            titulo = fonte_titulo.render('FIM DE JOGO NA ILHA DO RETIRO', True, (255, 250,0 ))
+
+            fonte_pontuacao = pg.font.Font(None, 60)
+            texto_pontuacao = fonte_pontuacao.render(f'Pontuação: {pontuacao}', True, (255, 255, 0))
+
+            fonte_instrucao = pg.font.Font(None, 40)
+            texto_instrucao = fonte_instrucao.render('Pressione qualquer tecla para jogar novamente', True, (0, 0, 0))
+
+            clock = pg.time.Clock()
+
+            done = False
+            while not done:
+                for event in pg.event.get():
+                    if event.type == pg.QUIT:
+                        done = True
+                    if event.type == pg.KEYDOWN:
+                        main()
+
+                screen.blit(background, (0, 0))
+                screen.blit(titulo, (100, 50))
+                screen.blit(texto_pontuacao, (200, 175))
+                screen.blit(texto_instrucao, (50, 500))
+
+                pg.display.update()
+                clock.tick(60)
+
+            pg.quit()
 
     # Draw the background image
     screen.blit(background_image, [0, 0])
@@ -186,3 +223,4 @@ while running:
 
 # Quit pygame
 pygame.quit()
+
