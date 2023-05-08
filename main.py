@@ -7,31 +7,31 @@ from player import Player
 
 import pygame
 
-# Initialize pygame
+# Inicia o pygame
 pygame.init()
 
-# Set up the window
+# configuracao da janela
 width, height = 800, 600
 screen = pygame.display.set_mode((width, height))
 pygame.display.set_caption("Trophy Collect: Sport Club edition")
 
-# Set the background image
+# imagem de fundo
 background_image = pygame.image.load("sportbackground.jpeg").convert()
 
-# Set up the fonts
+# titulo e botoes
 title_font = pygame.font.SysFont("Times New Roman", 60)
 button_font = pygame.font.SysFont("Times New Roman", 40)
 
-# Set up the colors
+# cores
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 GRAY = (128, 128, 128)
 DARK_GRAY = (64, 64, 64)
 
-# Create the "Start Game" button
+# start game 
 start_button = pygame.Rect(250, 300, 300, 80)
 
-# Create the "Quit Game" button
+# quit game
 quit_button = pygame.Rect(250, 400, 300, 80)
 
 pygame.mixer.init()
@@ -41,7 +41,7 @@ pygame.mixer.music.play(-1)
 # Set up the game loop
 running = True
 while running:
-    # Handle events
+    # loop eventos
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
@@ -185,16 +185,16 @@ while running:
 
             pg.quit()
 
-    # Draw the background image
+    # imagem de fundo desenhada
     screen.blit(background_image, [0, 0])
 
-    # Draw the title
+    # titulo desenhado
     title_text = title_font.render("TROPHY COLLECT", True, WHITE)
     title_rect = title_text.get_rect()
     title_rect.center = (width // 2, 100)
     screen.blit(title_text, title_rect)
 
-    # Draw the buttons
+    # botoes desenho
     pygame.draw.rect(screen, GRAY, start_button, border_radius=10)
     pygame.draw.rect(screen, GRAY, quit_button, border_radius=10)
     pygame.draw.rect(screen, DARK_GRAY, start_button.inflate(-10, -10), border_radius=10)
@@ -210,7 +210,7 @@ while running:
     pygame.draw.rect(screen, BLACK, start_button, 2, border_radius=10)
     pygame.draw.rect(screen, BLACK, quit_button, 2, border_radius=10)
 
-    # Draw the button text
+    # texto desenhado
     start_text = button_font.render("Start Game", True, BLACK)
     quit_text = button_font.render("Quit Game", True, BLACK)
     start_text_rect = start_text.get_rect(center=start_button.center)
@@ -218,7 +218,7 @@ while running:
     screen.blit(start_text, start_text_rect)
     screen.blit(quit_text, quit_text_rect)
 
-    # Update
+    # uptdate
     pygame.display.update()
 
 # Quit pygame
