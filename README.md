@@ -1,2 +1,3 @@
-# Projeto-P1
-Criado por alunos de Sistemas de Informação do CIN UFPE 
+# Projeto de game em Python - CIn UFPE
+
+Jogo desenvolvido em Python, com uso da biblioteca PyGame
